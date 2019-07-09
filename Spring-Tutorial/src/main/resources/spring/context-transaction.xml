@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
+	
+	
+		<util:properties id="contextProperties" location="classpath:config/context.properties" />
+	<!-- 오라클 연결 -->
+		<bean id="dataSourceSpied" class="org.apache.commons.dbcp2.BasicDataSource">
+			<property name="driverClassName" value="#{contextProperties.driver}"></property>
+			<property name="url" value="#{contextProperties.url}"></property>
+			<property name="username" value="#{contextProperties.username}"></property>
+			<property name="password" value="#{contextProperties.password}"></property>
+		</bean>
+		<!-- SQL 로그 찍기 -->		
+		<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+	        <constructor-arg ref="dataSourceSpied" />
+	        <property name="logFormatter">
+	            <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+	                <property name="loggingType" value="MULTI_LINE" />
+	                <property name="sqlPrefix" value="[   SQL   ]  :  "/>
+	            </bean>
+	        </property>
+	    </bean>
+	    
+	    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<property name="dataSource" ref="dataSource" />
+		</bean>
+	
+		<tx:annotation-driven transaction-manager="txManager" />
+</beans>
