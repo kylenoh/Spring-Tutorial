@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	location.replace('/tutorial/portal/main');
+	location.replace('/tutorial/main');
 </script>
 </head>
 <body>

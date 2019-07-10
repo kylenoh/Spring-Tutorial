@@ -6,7 +6,7 @@
 <tiles-definitions>
  
     <!-- (1) 레이아웃을 적용하지않는화면-->    
-    <definition name=".login" template="/WEB-INF/jsp/tileLayout/loginLayout.jsp">
+    <definition name=".login" template="/jsp/tileLayout/loginLayout.jsp">
         <put-attribute name="title" value="" />
         <put-attribute name="header" value="/WEB-INF/jsp/tilesView/header.jsp" />
         <put-attribute name="menu" value="" />        

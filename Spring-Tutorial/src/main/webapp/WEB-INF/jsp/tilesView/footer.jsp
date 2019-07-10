@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="/jsp/common/taglibs.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>푸터영역</h1>
+	<footer class="container">
+	    <p class="float-right"><a href="#">Back to top</a></p>
+	    <p>&copy; 2017-{{ site.time | date: "%Y" }} Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+ 	</footer>
 </body>
 </html>

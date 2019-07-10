@@ -52,5 +52,4 @@
 		<servlet-name>coreServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-
 </web-app>
