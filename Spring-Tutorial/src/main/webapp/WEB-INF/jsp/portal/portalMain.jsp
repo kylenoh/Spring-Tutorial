@@ -5,10 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	location.replace('/tutorial/portal/main');
-</script>
 </head>
 <body>
+	<h1>포탈 메인</h1>
+	
+	<a href="boardList">보드로 이동</a>
 </body>
 </html>

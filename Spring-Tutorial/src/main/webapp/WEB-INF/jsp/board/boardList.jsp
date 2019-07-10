@@ -5,10 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-	location.replace('/tutorial/portal/main');
-</script>
 </head>
 <body>
+	<h1>보드 리스트1</h1>
 </body>
 </html>
