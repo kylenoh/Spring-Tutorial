@@ -24,22 +24,56 @@ public class HomeController {
 
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String index() {
-		logger.debug("로그가 고장이 났나봐요");
 		return "portal/portalMain";
 	}
 
 	@RequestMapping(value = "/boardList")
 	public ModelAndView BoardList(Map<String, Object> commandMap) throws Exception {
-		logger.debug("보더로 이동");
 		ModelAndView modelandview = new ModelAndView("board/boardList");
 		List<Map<String, Object>> list = boardService.selectBoardList(commandMap);
 		modelandview.addObject("list", list);
 		return modelandview;
 	}
-
 	@RequestMapping(value = "/boardWrite")
 	public ModelAndView BoardWrite(CommandMap commandMap) throws Exception {
+		logger.debug("이거안함?");
 		ModelAndView modelandview = new ModelAndView("/board/boardWrite");
+		return modelandview;
+	}
+	@RequestMapping(value = "/boardUpdate")
+	public ModelAndView boardUpdate(CommandMap commandMap) throws Exception {
+		ModelAndView modelandview = new ModelAndView("/board/boardUpdate");
+		Map<String, Object>map = boardService.selectBoardDetail(commandMap.getMap());
+		modelandview.addObject("map",map);
+		return modelandview;
+	}
+	
+	
+	@RequestMapping(value = "/insertBoard")
+	public ModelAndView InsertBoard(CommandMap commandMap) throws Exception {
+		ModelAndView modelandview = new ModelAndView("redirect:/boardList");
+		boardService.insertBoard(commandMap.getMap());
+		return modelandview;
+	}
+	@RequestMapping(value = "/boardDetail")
+	public ModelAndView BoardDetail(CommandMap commandMap) throws Exception {
+		logger.debug("이거안함?");
+		ModelAndView modelandview = new ModelAndView("/board/boardDetail");
+		Map<String, Object>map = boardService.selectBoardDetail(commandMap.getMap());
+		modelandview.addObject("map",map);
+		return modelandview;
+	}
+	@RequestMapping(value = "/updateBoard")
+	public ModelAndView UpdateBoard(CommandMap commandMap) throws Exception {
+		ModelAndView modelandview = new ModelAndView("redirect:/boardDetail");
+		boardService.updateBoard(commandMap.getMap());
+		modelandview.addObject("IDX",commandMap.get("IDX"));
+		return modelandview;
+	}
+	@RequestMapping(value = "/deleteBoard")
+	public ModelAndView DeleteBoard(CommandMap commandMap) throws Exception {
+		ModelAndView modelandview = new ModelAndView("redirect:/boardList");
+		boardService.deleteBoard(commandMap.getMap());
 		return modelandview;
 	}
 

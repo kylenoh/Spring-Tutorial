@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h2>게시판 목록</h2>
-	<table style="border: 1px solid #ccc">
+	<table class="board_list">
 		<colgroup>
 			<col width="10%" />
 			<col width="*" />
@@ -30,7 +30,10 @@
 					<c:forEach items="${list }" var="row">
 						<tr>
 							<td>${row.IDX }</td>
-							<td>${row.TITLE }</td>
+							<td class="title">
+								<a href="#this" name="title">${row.TITLE }</a>
+								<input type="hidden" id="IDX" value="${row.IDX }">
+							</td>
 							<td>${row.HIT_CNT }</td>
 							<td>${row.CREA_DTM }</td>
 						</tr>
@@ -44,6 +47,32 @@
 			</c:choose>
 		</tbody>
 	</table>
-
+	<br/> 
+	<a href="#this" id="write">글쓰기</a>
+	
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#write").on("click",function(e){
+			e.preventDefault();
+			openBoardWrite();
+		});
+		$("a[name='title']").on("click",function(e){
+			e.preventDefault();
+			openBoardDetail($(this));
+		});
+	});
+	function openBoardWrite(){
+		alert('여기까지 옴');
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/boardWrite' />");
+		comSubmit.submit();
+	}
+	function openBoardDetail(obj){
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/boardDetail' />");
+		comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
+		comSubmit.submit();
+	}
+</script>
 </body>
 </html>

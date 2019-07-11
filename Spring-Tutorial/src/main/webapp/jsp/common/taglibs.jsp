@@ -5,3 +5,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<form id="commonForm" name="commonForm"></form>
