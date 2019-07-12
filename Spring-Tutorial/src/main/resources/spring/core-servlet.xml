@@ -3,18 +3,27 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
-	
+	<!-- 사용자 지정 component만 읽어들일것 -->
+	<context:component-scan base-package="tutorial" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven>
 		<argument-resolvers>
 			<beans:bean class="tutorial.common.CustomMapArgumentResolver"></beans:bean>		
 		</argument-resolvers>
 	</annotation-driven>
+	
+	<!-- AOP PROXY 사용 선언 후, 아래 Bean 사용 -->
+	<aop:aspectj-autoproxy/>
+	<beans:bean id="loggerAspect" class="tutorial.common.LoggerAspect"/>
+
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory--> 
 	<resources mapping="/img/**" location="/img/" />
@@ -42,9 +51,5 @@
 		<beans:property name="suffix" value=".jsp" />
 		<beans:property name="order" value="2"/>
 	</beans:bean>
-	
-	<context:component-scan base-package="tutorial" />
-	
-	
 	
 </beans:beans>

@@ -62,7 +62,6 @@
 		});
 	});
 	function openBoardWrite(){
-		alert('여기까지 옴');
 		var comSubmit = new ComSubmit();
 		comSubmit.setUrl("<c:url value='/boardWrite' />");
 		comSubmit.submit();

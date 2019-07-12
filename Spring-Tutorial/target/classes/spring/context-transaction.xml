@@ -6,7 +6,10 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.3.xsd">
-	
+	<!-- 
+		Root Context: 다른 서블릿에서 공유하는 Bean 이나 controller를 등록
+					    서블릿에서 이미 등록했을 경우 우선순위는 서블릿에 있다.
+	-->
 	
 		<util:properties id="contextProperties" location="classpath:config/context.properties" />
 	<!-- 오라클 연결 -->

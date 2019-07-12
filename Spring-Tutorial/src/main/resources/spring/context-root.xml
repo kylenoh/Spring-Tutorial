@@ -3,6 +3,9 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- 
+		Root Context: 다른 서블릿에서 공유하는 Bean 이나 controller를 등록
+					    서블릿에서 이미 등록했을 경우 우선순위는 서블릿에 있다.
+	-->
 		
 </beans>
