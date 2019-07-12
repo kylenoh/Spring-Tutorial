@@ -29,6 +29,22 @@
 		<org.springframework.security-version>5.0.6.RELEASE</org.springframework.security-version>
 	</properties>
 	<dependencies>
+		<!-- WebService -->
+		<dependency>
+			<groupId>org.apache.axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>axis</groupId>
+			<artifactId>axis-wsdl4j</artifactId>
+			<version>1.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.xml.rpc</groupId>
+			<artifactId>javax.xml.rpc-api</artifactId>
+			<version>1.1.2</version>
+		</dependency>
 		<!-- JSON -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -146,12 +162,19 @@
 		</dependency>
 
 		<!-- Logging -->
+		
 		<!-- log4j-remix -->
         <dependency>
             <groupId>org.lazyluke</groupId>
                 <artifactId>log4jdbc-remix</artifactId>
             <version>0.2.7</version>
         </dependency>
+        <!-- WebService Common Log -->
+        <dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
