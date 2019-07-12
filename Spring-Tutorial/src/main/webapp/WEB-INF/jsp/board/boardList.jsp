@@ -47,10 +47,15 @@
 			</c:choose>
 		</tbody>
 	</table>
-	<br/> 
+
+	<div id="PAGE_NAVI"></div>
+	<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX"/>
+
 	<a href="#this" id="write">글쓰기</a>
 <script type="text/javascript">
 	$(document).ready(function(){
+		selectBoardList(1);
+		
 		$("#write").on("click",function(e){
 			e.preventDefault();
 			openBoardWrite();
@@ -71,6 +76,42 @@
 		comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
 		comSubmit.submit();
 	}
+	function selectBoardList(pageNo){
+		var comAjax = new ComAjax();
+		comAjax.setUrl("<c:url value='/sample/selectBoardList.do' />");
+		comAjax.setCallback("fn_selectBoardListCallback");
+		comAjax.addParam("PAGE_INDEX",pageNo);
+		comAjax.addParam("PAGE_ROW", 15);
+		comAjax.ajax();
+	}
+	function selectBoardListCallback(data){
+		var total = data.TOTAL;
+		var body = $("table>tbody");
+		body.empty();
+		if(total == 0){
+			var str = "<tr>" + "<td colspan='4'>조회된 결과가 없습니다.</td>" + "</tr>";
+			body.append(str);
+		} else{
+			var params = { divId : "PAGE_NAVI", pageIndex : "PAGE_INDEX", totalCount : total, eventName : "selectBoardList" };
+			gfn_renderPaging(params);
+			var str = "";
+				$.each(data.list, function(key, value){
+					str += "<tr>" + "<td>" + value.IDX + "</td>" + "<td class='title'>" 
+					+ "<a href='#this' name='title'>" 
+					+ value.TITLE + "</a>" 
+					+ "<input type='hidden' name='title' value=" 
+					+ value.IDX + ">" + "</td>" + "<td>" 
+					+ value.HIT_CNT + "</td>" + "<td>" 
+					+ value.CREA_DTM + "</td>" + "</tr>"; 
+				});
+			body.append(str); 
+			$("a[name='title']").on("click", function(e){
+				e.preventDefault();
+				openBoardDetail($(this));
+			});
+		}
+	}
+
 </script>
 </body>
 </html>

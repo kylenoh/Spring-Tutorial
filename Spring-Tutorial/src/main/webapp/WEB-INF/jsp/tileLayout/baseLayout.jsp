@@ -13,7 +13,7 @@
 <body class="wrapper">
         <tiles:insertAttribute name="header"/>        
         <tiles:insertAttribute name="menu" />    
-     <div id="container">
+     <div class="container" style="min-height:800px;">
         <tiles:insertAttribute name="body" />                                                  
      </div>
         <tiles:insertAttribute name="footer" />

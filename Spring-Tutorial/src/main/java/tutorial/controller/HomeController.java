@@ -32,6 +32,12 @@ public class HomeController {
 		ModelAndView modelandview = new ModelAndView("board/boardList");
 		List<Map<String, Object>> list = boardService.selectBoardList(commandMap);
 		modelandview.addObject("list", list);
+		if(list.size() > 0){ 
+			modelandview.addObject("TOTAL", list.get(0).get("TOTAL_COUNT")); 
+		} else{
+			modelandview.addObject("TOTAL", 0); 
+		}
+
 		return modelandview;
 	}
 	@RequestMapping(value = "/boardWrite")

@@ -29,6 +29,17 @@
 		<org.springframework.security-version>5.0.6.RELEASE</org.springframework.security-version>
 	</properties>
 	<dependencies>
+		<!-- common fileupload -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.4</version>
+		</dependency>
 		<!-- WebService -->
 		<dependency>
 			<groupId>org.apache.axis</groupId>
