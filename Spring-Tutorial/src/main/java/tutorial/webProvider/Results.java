@@ -10,7 +10,7 @@ package tutorial.webProvider;
 public class Results  implements java.io.Serializable {
     private java.lang.String REQ_CATEGORY_NAME;
 
-    private java.lang.String REQ_SUGGEST;
+    private java.lang.String REQ_TITLE;
 
     private java.lang.String PJT_TITLE;
 
@@ -33,7 +33,7 @@ public class Results  implements java.io.Serializable {
 
     public Results(
            java.lang.String REQ_CATEGORY_NAME,
-           java.lang.String REQ_SUGGEST,
+           java.lang.String REQ_TITLE,
            java.lang.String PJT_TITLE,
            java.lang.String REQ_START_DATE,
            java.lang.String EMP_NAME,
@@ -43,7 +43,7 @@ public class Results  implements java.io.Serializable {
            java.lang.String SOLUTION_TITLE,
            java.lang.String SOLUTION_UPDATE_DATE) {
            this.REQ_CATEGORY_NAME = REQ_CATEGORY_NAME;
-           this.REQ_SUGGEST = REQ_SUGGEST;
+           this.REQ_TITLE = REQ_TITLE;
            this.PJT_TITLE = PJT_TITLE;
            this.REQ_START_DATE = REQ_START_DATE;
            this.EMP_NAME = EMP_NAME;
@@ -76,22 +76,22 @@ public class Results  implements java.io.Serializable {
 
 
     /**
-     * Gets the REQ_SUGGEST value for this Results.
+     * Gets the REQ_TITLE value for this Results.
      * 
-     * @return REQ_SUGGEST
+     * @return REQ_TITLE
      */
-    public java.lang.String getREQ_SUGGEST() {
-        return REQ_SUGGEST;
+    public java.lang.String getREQ_TITLE() {
+        return REQ_TITLE;
     }
 
 
     /**
-     * Sets the REQ_SUGGEST value for this Results.
+     * Sets the REQ_TITLE value for this Results.
      * 
-     * @param REQ_SUGGEST
+     * @param REQ_TITLE
      */
-    public void setREQ_SUGGEST(java.lang.String REQ_SUGGEST) {
-        this.REQ_SUGGEST = REQ_SUGGEST;
+    public void setREQ_TITLE(java.lang.String REQ_TITLE) {
+        this.REQ_TITLE = REQ_TITLE;
     }
 
 
@@ -269,9 +269,9 @@ public class Results  implements java.io.Serializable {
             ((this.REQ_CATEGORY_NAME==null && other.getREQ_CATEGORY_NAME()==null) || 
              (this.REQ_CATEGORY_NAME!=null &&
               this.REQ_CATEGORY_NAME.equals(other.getREQ_CATEGORY_NAME()))) &&
-            ((this.REQ_SUGGEST==null && other.getREQ_SUGGEST()==null) || 
-             (this.REQ_SUGGEST!=null &&
-              this.REQ_SUGGEST.equals(other.getREQ_SUGGEST()))) &&
+            ((this.REQ_TITLE==null && other.getREQ_TITLE()==null) || 
+             (this.REQ_TITLE!=null &&
+              this.REQ_TITLE.equals(other.getREQ_TITLE()))) &&
             ((this.PJT_TITLE==null && other.getPJT_TITLE()==null) || 
              (this.PJT_TITLE!=null &&
               this.PJT_TITLE.equals(other.getPJT_TITLE()))) &&
@@ -310,8 +310,8 @@ public class Results  implements java.io.Serializable {
         if (getREQ_CATEGORY_NAME() != null) {
             _hashCode += getREQ_CATEGORY_NAME().hashCode();
         }
-        if (getREQ_SUGGEST() != null) {
-            _hashCode += getREQ_SUGGEST().hashCode();
+        if (getREQ_TITLE() != null) {
+            _hashCode += getREQ_TITLE().hashCode();
         }
         if (getPJT_TITLE() != null) {
             _hashCode += getPJT_TITLE().hashCode();
@@ -354,8 +354,8 @@ public class Results  implements java.io.Serializable {
         elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("REQ_SUGGEST");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "REQ_SUGGEST"));
+        elemField.setFieldName("REQ_TITLE");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "REQ_TITLE"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setNillable(true);
         typeDesc.addFieldDesc(elemField);
