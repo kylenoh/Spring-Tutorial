@@ -13,7 +13,7 @@
 <body class="wrapper">
         <tiles:insertAttribute name="header"/>        
         <tiles:insertAttribute name="menu" />    
-     <div id="page-wrapper" style="margin:200px;">
+     <div id="container">
         <tiles:insertAttribute name="body" />                                                  
      </div>
         <tiles:insertAttribute name="footer" />

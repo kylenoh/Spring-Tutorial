@@ -29,6 +29,17 @@
 		<org.springframework.security-version>5.0.6.RELEASE</org.springframework.security-version>
 	</properties>
 	<dependencies>
+		<!-- JSON -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.9.7</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.9.8</version>
+		</dependency>
 		<!-- Spring Security -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
