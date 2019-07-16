@@ -12,23 +12,6 @@
 		  FROM TB_BOARD
 		 WHERE DEL_GB = 'N' ORDER BY IDX DESC
 	</select>
-	<insert id="insertBoard" parameterType="hashmap">
-		INSERT INTO TB_BOARD ( 
-					IDX,
-					TITLE,
-					CONTENTS,
-					HIT_CNT,
-					DEL_GB,
-					CREA_DTM,
-					CREA_ID )
-		 	VALUES ( SEQ_TB_BOARD_IDX.NEXTVAL,
-		 			#{TITLE},
-		 			#{CONTENTS},
-		 			0,
-		 			'N',
-		 			SYSDATE,
-		 			'Admin' )
-	</insert>
 	<update id="updateHitCnt" parameterType="hashmap">
 		UPDATE TB_BOARD
 		   SET HIT_CNT = NVL(HIT_CNT, 0) + 1 
@@ -55,4 +38,43 @@
 		   SET DEL_GB = 'Y'
 		 WHERE IDX = #{IDX}
 	</update>
+	<insert id="insertBoard" parameterType="hashmap" useGeneratedKeys="true" keyProperty="IDX">
+		<selectKey keyProperty="IDX" resultType="string" order="BEFORE">
+			SELECT SEQ_TB_BOARD_IDX.NEXTVAL FROM DUAL
+		</selectKey>
+			INSERT INTO TB_BOARD ( IDX,
+								   TITLE,
+								   CONTENTS,
+								   HIT_CNT,
+								   DEL_GB,
+								   CREA_DTM,
+								   CREA_ID )
+						  VALUES ( #{IDX},
+						  		   #{TITLE},
+						  		   #{CONTENTS},
+						  		   0,
+						  		   'N',
+						  		   SYSDATE,
+						  		   'Admin'
+						  		 )
+	</insert>
+	<insert id="insertFile" parameterType="hashmap">
+		INSERT INTO TB_FILE ( IDX,
+							  BOARD_IDX,
+							  ORIGINAL_FILE_NAME,
+							  STORED_FILE_NAME,
+							  FILE_SIZE,
+							  CREA_ID ) 
+					 VALUES ( SEQ_TB_FILE_IDX.NEXTVAL,
+					 		  #{BOARD_IDX},
+					 		  #{ORIGINAL_FILE_NAME},
+					 		  #{STORED_FILE_NAME},
+					 		  #{FILE_SIZE},
+					 		  'Admin'
+					 		)
+	</insert>
+
+
+	
+	
 </mapper>

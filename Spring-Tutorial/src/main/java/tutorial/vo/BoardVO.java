@@ -1,34 +1,43 @@
 package tutorial.vo;
 
 public class BoardVO {
-	private String title;
-	private String content;
+	private String TITLE;
+	private String CONTENTS;
+	private String FILE;
 	
 	public BoardVO() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BoardVO(String title, String content) {
+	public BoardVO(String tITLE, String cONTENTS, String fILE) {
 		super();
-		this.title = title;
-		this.content = content;
+		TITLE = tITLE;
+		CONTENTS = cONTENTS;
+		FILE = fILE;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getTITLE() {
+		return TITLE;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setTITLE(String tITLE) {
+		TITLE = tITLE;
 	}
 
-	public String getContent() {
-		return content;
+	public String getCONTENTS() {
+		return CONTENTS;
 	}
 
-	public void setContent(String content) {
-		this.content = content;
+	public void setCONTENTS(String cONTENTS) {
+		CONTENTS = cONTENTS;
 	}
-	
-	
+
+	public String getFILE() {
+		return FILE;
+	}
+
+	public void setFILE(String fILE) {
+		FILE = fILE;
+	}
+
 }

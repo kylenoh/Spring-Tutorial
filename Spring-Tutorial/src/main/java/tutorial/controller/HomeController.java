@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,7 +43,6 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/boardWrite")
 	public ModelAndView BoardWrite(CommandMap commandMap) throws Exception {
-		logger.debug("이거안함?");
 		ModelAndView modelandview = new ModelAndView("/board/boardWrite");
 		return modelandview;
 	}
@@ -56,9 +56,9 @@ public class HomeController {
 	
 	
 	@RequestMapping(value = "/insertBoard")
-	public ModelAndView InsertBoard(CommandMap commandMap) throws Exception {
+	public ModelAndView InsertBoard(CommandMap commandMap, HttpServletRequest request) throws Exception {
 		ModelAndView modelandview = new ModelAndView("redirect:/boardList");
-		boardService.insertBoard(commandMap.getMap());
+		boardService.insertBoard(commandMap.getMap(),request);
 		return modelandview;
 	}
 	@RequestMapping(value = "/boardDetail")

@@ -4,16 +4,21 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import tutorial.dao.BoardDAO;
+import tutorial.util.FileUtils;
 
 @Service
 public class BoardServiceImpl implements BoardService {
+
 	@Inject
 	BoardDAO boardDAO;
+	@Inject
+	FileUtils fileUtils;
 
 	@Override
 	public List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception {
@@ -21,8 +26,14 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void insertBoard(Map<String, Object> map) throws Exception {
+	public void insertBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		boardDAO.insertBoard(map);
+
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(map, request);
+		for (int i = 0, size = list.size(); i < size; i++) {
+			boardDAO.insertFile(list.get(i));
+		}
+
 	}
 
 	@Override
@@ -64,6 +75,6 @@ public class BoardServiceImpl implements BoardService {
 
 	private void printQueryId(String queryId) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
