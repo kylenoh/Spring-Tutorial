@@ -1,5 +1,6 @@
 package tutorial.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -39,7 +40,12 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
 		boardDAO.updateHitCnt(map);
-		return boardDAO.selectBoardDetail(map);
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> tempMap = boardDAO.selectBoardDetail(map);
+		resultMap.put("map", tempMap);
+		List<Map<String, Object>> list = boardDAO.selectFileList(map);
+		resultMap.put("list", list);
+		return resultMap;
 	}
 
 	@Override
@@ -72,7 +78,11 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.selectPagingList(queryId, map);
 
 	}
-
+	@Override
+	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
+		return boardDAO.selectFileInfo(map);
+	}
+	
 	private void printQueryId(String queryId) {
 		// TODO Auto-generated method stub
 
