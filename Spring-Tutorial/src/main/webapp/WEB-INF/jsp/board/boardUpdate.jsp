@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form id="frm">
+	<form id="frm" enctype="multipart/form-data">
 		<table class="board_view">
 			<colgroup>
 				<col width="15%" />

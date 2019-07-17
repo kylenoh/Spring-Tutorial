@@ -35,7 +35,7 @@
 
 	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
 	<beans:bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
-	<beans:bean id="WebProvider_PortType" class="tutorial.webProvider.WebProvider_PortTypeProxy"/>
+	
 
 	
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
