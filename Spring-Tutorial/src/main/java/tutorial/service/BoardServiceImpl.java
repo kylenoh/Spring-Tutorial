@@ -15,7 +15,6 @@ import tutorial.util.FileUtils;
 
 @Service
 public class BoardServiceImpl implements BoardService {
-
 	@Inject
 	BoardDAO boardDAO;
 	@Inject
@@ -49,8 +48,21 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void updateBoard(Map<String, Object> map) throws Exception {
+	public void updateBoard(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		boardDAO.updateBoard(map);
+
+		boardDAO.deleteFileList(map);
+		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(map, request);
+		Map<String, Object> tempMap = null;
+		for (int i = 0, size = list.size(); i < size; i++) {
+			tempMap = list.get(i);
+			if (tempMap.get("IS_NEW").equals("Y")) {
+				boardDAO.insertFile(tempMap);
+			} else {
+				boardDAO.updateFile(tempMap);
+			}
+		}
+
 	}
 
 	@Override
@@ -78,11 +90,12 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.selectPagingList(queryId, map);
 
 	}
+
 	@Override
 	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception {
 		return boardDAO.selectFileInfo(map);
 	}
-	
+
 	private void printQueryId(String queryId) {
 		// TODO Auto-generated method stub
 

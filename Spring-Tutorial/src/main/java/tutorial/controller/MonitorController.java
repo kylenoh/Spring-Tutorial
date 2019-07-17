@@ -22,7 +22,7 @@ import tutorial.webProvider.holders.ResultsArrayHolder;
 public class MonitorController {
 	@Inject WebProvider_PortType portType;
 	
-	@RequestMapping(value = "/monitorList")
+	@RequestMapping(value = "/openMonitorList")
 	public ModelAndView MonitorList(Map<String, Object> commandMap) throws Exception {
 		ModelAndView modelandview = new ModelAndView("monitor/monitorList");
 		

@@ -18,7 +18,7 @@
 		<tbody>
 			<tr>
 				<th scope="row">글 번호</th>
-				<td>${map.IDX }</td>
+				<td>${map.IDX }<input type="hidden" id="IDX" name="IDX" value="${map.IDX }"></td>
 				<th scope="row">조회수</th>
 				<td>${map.HIT_CNT }</td>
 			</tr>
@@ -68,13 +68,13 @@
 		});
 		function BoardList() {
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/boardList' />");
+			comSubmit.setUrl("<c:url value='/openBoardList' />");
 			comSubmit.submit();
 		}
 		function updateBoard() {
 			var idx = "${map.IDX}";
 			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/boardUpdate' />");
+			comSubmit.setUrl("<c:url value='/openBoardUpdate' />");
 			comSubmit.addParam("IDX", idx);
 			comSubmit.submit();
 		}

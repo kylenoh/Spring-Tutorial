@@ -33,7 +33,7 @@ public class BoardController {
 	}
 
 //	페이지 이동
-	@RequestMapping(value = "/boardList")
+	@RequestMapping(value = "/openBoardList")
 	public ModelAndView BoardList(Map<String, Object> commandMap) throws Exception {
 		ModelAndView modelandview = new ModelAndView("board/boardList");
 		List<Map<String, Object>> list = boardService.selectBoardList(commandMap);
@@ -43,25 +43,22 @@ public class BoardController {
 		} else {
 			modelandview.addObject("TOTAL", 0);
 		}
-
 		return modelandview;
 	}
-
-	@RequestMapping(value = "/boardWrite")
+	@RequestMapping(value = "/openBoardWrite")
 	public ModelAndView BoardWrite(CommandMap commandMap) throws Exception {
 		ModelAndView modelandview = new ModelAndView("/board/boardWrite");
 		return modelandview;
 	}
-
-	@RequestMapping(value = "/boardUpdate")
+	@RequestMapping(value = "/openBoardUpdate")
 	public ModelAndView boardUpdate(CommandMap commandMap) throws Exception {
 		ModelAndView modelandview = new ModelAndView("/board/boardUpdate");
 		Map<String, Object> map = boardService.selectBoardDetail(commandMap.getMap());
-		modelandview.addObject("map", map);
+		modelandview.addObject("map", map.get("map"));
+		modelandview.addObject("map", map.get("list"));
 		return modelandview;
 	}
-
-	@RequestMapping(value = "/boardDetail")
+	@RequestMapping(value = "/openBoardDetail")
 	public ModelAndView BoardDetail(CommandMap commandMap) throws Exception {
 		ModelAndView modelandview = new ModelAndView("/board/boardDetail");
 		Map<String, Object> map = boardService.selectBoardDetail(commandMap.getMap());
@@ -73,29 +70,25 @@ public class BoardController {
 	}
 
 //	쿼리 실행
-
 	@RequestMapping(value = "/insertBoard")
 	public ModelAndView InsertBoard(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		ModelAndView modelandview = new ModelAndView("redirect:/boardList");
+		ModelAndView modelandview = new ModelAndView("redirect:/openBoardList");
 		boardService.insertBoard(commandMap.getMap(), request);
 		return modelandview;
 	}
-
 	@RequestMapping(value = "/updateBoard")
-	public ModelAndView UpdateBoard(CommandMap commandMap) throws Exception {
-		ModelAndView modelandview = new ModelAndView("redirect:/boardDetail");
-		boardService.updateBoard(commandMap.getMap());
+	public ModelAndView UpdateBoard(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView modelandview = new ModelAndView("redirect:/openBoardDetail");
+		boardService.updateBoard(commandMap.getMap(), request);
 		modelandview.addObject("IDX", commandMap.get("IDX"));
 		return modelandview;
 	}
-
 	@RequestMapping(value = "/deleteBoard")
 	public ModelAndView DeleteBoard(CommandMap commandMap) throws Exception {
-		ModelAndView modelandview = new ModelAndView("redirect:/boardList");
+		ModelAndView modelandview = new ModelAndView("redirect:/openBoardList");
 		boardService.deleteBoard(commandMap.getMap());
 		return modelandview;
 	}
-
 	@RequestMapping(value = "/downloadFile")
 	public void downloadFile(CommandMap commandMap, HttpServletResponse response) throws Exception {
 		Map<String, Object> map = boardService.selectFileInfo(commandMap.getMap());

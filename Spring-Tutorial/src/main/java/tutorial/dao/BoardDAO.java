@@ -19,4 +19,7 @@ public interface BoardDAO {
 	
 //	File
 	Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
+	void updateFile(Map<String, Object> map) throws Exception;
+	void deleteFileList(Map<String, Object> map) throws Exception;
+
 }

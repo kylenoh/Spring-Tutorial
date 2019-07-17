@@ -67,19 +67,19 @@
 	});
 	function openBoardWrite(){
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/boardWrite' />");
+		comSubmit.setUrl("<c:url value='/openBoardWrite' />");
 		comSubmit.submit();
 	}
 	function openBoardDetail(obj){
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/boardDetail' />");
+		comSubmit.setUrl("<c:url value='/openBoardDetail' />");
 		comSubmit.addParam("IDX", obj.parent().find("#IDX").val());
 		comSubmit.submit();
 	}
 	function selectBoardList(pageNo){
 		var comAjax = new ComAjax();
-		comAjax.setUrl("<c:url value='/sample/selectBoardList.do' />");
-		comAjax.setCallback("fn_selectBoardListCallback");
+		comAjax.setUrl("<c:url value='/selectBoardList' />");
+		comAjax.setCallback("selectBoardListCallback");
 		comAjax.addParam("PAGE_INDEX",pageNo);
 		comAjax.addParam("PAGE_ROW", 15);
 		comAjax.ajax();
