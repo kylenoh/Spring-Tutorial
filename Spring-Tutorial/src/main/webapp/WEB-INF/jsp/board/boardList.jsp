@@ -25,26 +25,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:choose>
-				<c:when test="${fn:length(list) > 0}">
-					<c:forEach items="${list }" var="row">
-						<tr>
-							<td>${row.IDX }</td>
-							<td class="title">
-								<a href="#this" name="title">${row.TITLE }</a>
-								<input type="hidden" id="IDX" value="${row.IDX }">
-							</td>
-							<td>${row.HIT_CNT }</td>
-							<td>${row.CREA_DTM }</td>
-						</tr>
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<tr>
-						<td colspan="4">조회된 결과가 없습니다.</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>
+
 		</tbody>
 	</table>
 
@@ -80,8 +61,9 @@
 		var comAjax = new ComAjax();
 		comAjax.setUrl("<c:url value='/selectBoardList' />");
 		comAjax.setCallback("selectBoardListCallback");
-		comAjax.addParam("PAGE_INDEX",pageNo);
+		comAjax.addParam("PAGE_INDEX",$("#PAGE_INDEX").val());
 		comAjax.addParam("PAGE_ROW", 15);
+		comAjax.addParam("IDX_FE", $("#IDX_FE").val());
 		comAjax.ajax();
 	}
 	function selectBoardListCallback(data){
@@ -92,7 +74,11 @@
 			var str = "<tr>" + "<td colspan='4'>조회된 결과가 없습니다.</td>" + "</tr>";
 			body.append(str);
 		} else{
-			var params = { divId : "PAGE_NAVI", pageIndex : "PAGE_INDEX", totalCount : total, eventName : "selectBoardList" };
+			var params = { divId : "PAGE_NAVI",
+						   pageIndex : "PAGE_INDEX",
+						   totalCount : total,
+						   eventName : "selectBoardList"
+						 };
 			gfn_renderPaging(params);
 			var str = "";
 				$.each(data.list, function(key, value){

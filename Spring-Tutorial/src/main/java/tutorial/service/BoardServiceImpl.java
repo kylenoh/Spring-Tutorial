@@ -7,14 +7,19 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import tutorial.controller.BoardController;
 import tutorial.dao.BoardDAO;
 import tutorial.util.FileUtils;
 
 @Service
 public class BoardServiceImpl implements BoardService {
+	Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
+	
 	@Inject
 	BoardDAO boardDAO;
 	@Inject
@@ -97,7 +102,8 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	private void printQueryId(String queryId) {
-		// TODO Auto-generated method stub
-
+		if(logger.isDebugEnabled()){
+			logger.debug("\t QueryId  \t:  " + queryId);
+		}
 	}
 }

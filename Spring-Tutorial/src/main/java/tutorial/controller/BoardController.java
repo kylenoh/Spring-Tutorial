@@ -36,15 +36,24 @@ public class BoardController {
 	@RequestMapping(value = "/openBoardList")
 	public ModelAndView BoardList(Map<String, Object> commandMap) throws Exception {
 		ModelAndView modelandview = new ModelAndView("board/boardList");
-		List<Map<String, Object>> list = boardService.selectBoardList(commandMap);
-		modelandview.addObject("list", list);
-		if (list.size() > 0) {
-			modelandview.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
-		} else {
-			modelandview.addObject("TOTAL", 0);
-		}
 		return modelandview;
 	}
+	@RequestMapping(value="/selectBoardList")
+    public ModelAndView selectBoardList(CommandMap commandMap) throws Exception{
+    	ModelAndView modelandview = new ModelAndView("jsonView");
+    	System.out.println("시작페이지"+commandMap.get("PAGE_INDEX"));
+    	System.out.println("종료페이지"+commandMap.get("PAGE_ROW"));
+    	List<Map<String,Object>> list = boardService.selectBoardList(commandMap.getMap());
+    	modelandview.addObject("list", list);
+    	if(list.size() > 0){
+    		modelandview.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+    	}
+    	else{
+    		modelandview.addObject("TOTAL", 0);
+    	}
+    	
+    	return modelandview;
+    }
 	@RequestMapping(value = "/openBoardWrite")
 	public ModelAndView BoardWrite(CommandMap commandMap) throws Exception {
 		ModelAndView modelandview = new ModelAndView("/board/boardWrite");
