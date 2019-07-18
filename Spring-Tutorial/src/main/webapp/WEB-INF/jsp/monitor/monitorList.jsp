@@ -29,13 +29,13 @@
 					<c:choose>
 						<c:when test="${fn:length(list) > 0}">
 							<c:forEach items="${list }" var="row">
-								<c:if test="${not empty row.REQ_CATEGORY_NAME}">
-									<tr>
-										<td>${row.REQ_CATEGORY_NAME }</td>
-										<td>${row.REQ_TITLE }</td>
-										<td>${row.PJT_TITLE }</td>
-										<td>${row.REQ_START_DATE }</td>
-									</tr>
+								<c:if test="${row.GUBUN==1}">
+										<tr>
+											<td>${row.DATA2 }</td>
+											<td>${row.DATA1 }</td>
+											<td>${row.DATA5 }</td>
+											<td>${row.DATA4 }</td>
+										</tr>
 								</c:if>
 							</c:forEach>
 						</c:when>
@@ -71,12 +71,12 @@
 						<c:choose>
 							<c:when test="${fn:length(list) > 0}">
 								<c:forEach items="${list }" var="row">
-									<c:if test="${not empty row.PJT_START_DATE}">
+									<c:if test="${row.GUBUN==2}">
 										<tr>
-											<td>${row.PJT_TITLE }</td>
-											<td>${row.EMP_NAME }</td>
-											<td>${row.PJT_START_DATE }</td>
-											<td>${row.PJT_END_DATE }</td>
+											<td>${row.DATA1 }</td>
+											<td>${row.DATA3 }</td>
+											<td>${row.DATA4 }</td>
+											<td>${row.DATA5 }</td>
 										</tr>
 									</c:if>
 								</c:forEach>
@@ -113,12 +113,12 @@
 						<c:choose>
 							<c:when test="${fn:length(list) > 0}">
 								<c:forEach items="${list }" var="row">
-									<c:if test="${not empty row.SOLUTION_TITLE}">
+									<c:if test="${row.GUBUN==3}">
 										<tr>
-											<td>${row.CATE_SECTION_NAME }</td>
-											<td>${row.SOLUTION_TITLE }</td>
-											<td>${row.EMP_NAME }</td>
-											<td>${row.SOLUTION_UPDATE_DATE }</td>
+											<td>${row.DATA2 }</td>
+											<td>${row.DATA1 }</td>
+											<td>${row.DATA3 }</td>
+											<td>${row.DATA4 }</td>
 										</tr>
 									</c:if>
 								</c:forEach>
