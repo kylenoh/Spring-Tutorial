@@ -82,13 +82,15 @@
 			gfn_renderPaging(params);
 			var str = "";
 				$.each(data.list, function(key, value){
-					str += "<tr>" + "<td>" + value.IDX + "</td>" + "<td class='title'>" 
-					+ "<a href='#this' name='title'>" 
-					+ value.TITLE + "</a>" 
-					+ "<input type='hidden' name='title' value=" 
-					+ value.IDX + ">" + "</td>" + "<td>" 
-					+ value.HIT_CNT + "</td>" + "<td>" 
-					+ value.CREA_DTM + "</td>" + "</tr>"; 
+					str += "<tr>" 
+							+ "<td>" + value.IDX + "</td>"
+							+ "<td class='title'>" 
+								+ "<a href='#this' name='title'>" + value.TITLE + "</a>" 
+								+ "<input type='hidden' id='IDX' value=" + value.IDX + ">" 
+							+ "</td>" 
+							+ "<td>"+ value.HIT_CNT + "</td>" 
+							+ "<td>"+ value.CREA_DTM + "</td>" 
+							+ "</tr>"; 
 				});
 			body.append(str); 
 			$("a[name='title']").on("click", function(e){

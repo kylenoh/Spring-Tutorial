@@ -50,7 +50,7 @@ function ComAjax(opt_formId){
 	};
 	
 	this.setCallback = function setCallback(callBack){
-		fv_ajaxCallback = callBack;
+		ajaxCallback = callBack;
 	};
 
 	this.addParam = function addParam(key,value){ 
@@ -67,11 +67,11 @@ function ComAjax(opt_formId){
 			data : this.param,
 			async : false, 
 			success : function(data, status) {
-				if(typeof(fv_ajaxCallback) == "function"){
-					fv_ajaxCallback(data);
+				if(typeof(ajaxCallback) == "function"){
+					ajaxCallback(data);
 				}
 				else {
-					eval(fv_ajaxCallback + "(data);");
+					eval(ajaxCallback + "(data);");
 				}
 			}
 		});
@@ -114,27 +114,27 @@ function gfn_renderPaging(params){
 	var next = (parseInt((currentIndex-1)/10)+1) * 10 + 1 < totalIndexCount ? (parseInt((currentIndex-1)/10)+1) * 10 + 1 : totalIndexCount;
 	
 	if(totalIndexCount > 10){ //전체 인덱스가 10이 넘을 경우, 맨앞, 앞 태그 작성
-		preStr += "<a href='#this' class='pad_5' onclick='_movePage(1)'>[<<]</a>" +
-				"<a href='#this' class='pad_5' onclick='_movePage("+prev+")'>[<]</a>";
+		preStr += "<a href='#this' onclick='_movePage(1)'>[<<]</a>" +
+				"<a href='#this' onclick='_movePage("+prev+")'>[<]</a>";
 	}
 	else if(totalIndexCount <=10 && totalIndexCount > 1){ //전체 인덱스가 10보다 작을경우, 맨앞 태그 작성
-		preStr += "<a href='#this' class='pad_5' onclick='_movePage(1)'>[<<]</a>";
+		preStr += "<a href='#this' onclick='_movePage(1)'>[<<]</a>";
 	}
 	
 	if(totalIndexCount > 10){ //전체 인덱스가 10이 넘을 경우, 맨뒤, 뒤 태그 작성
-		postStr += "<a href='#this' class='pad_5' onclick='_movePage("+next+")'>[>]</a>" +
-					"<a href='#this' class='pad_5' onclick='_movePage("+totalIndexCount+")'>[>>]</a>";
+		postStr += "<a href='#this' onclick='_movePage("+next+")'>[>]</a>" +
+					"<a href='#this' onclick='_movePage("+totalIndexCount+")'>[>>]</a>";
 	}
 	else if(totalIndexCount <=10 && totalIndexCount > 1){ //전체 인덱스가 10보다 작을경우, 맨뒤 태그 작성
-		postStr += "<a href='#this' class='pad_5' onclick='_movePage("+totalIndexCount+")'>[>>]</a>";
+		postStr += "<a href='#this' onclick='_movePage("+totalIndexCount+")'>[>>]</a>";
 	}
 	
 	for(var i=first; i<(first+last); i++){
 		if(i != currentIndex){
-			str += "<a href='#this' class='pad_5' onclick='_movePage("+i+")'>"+i+"</a>";
+			str += "<a href='#this' onclick='_movePage("+i+")'>"+i+"</a>";
 		}
 		else{
-			str += "<strong><a href='#this' class='pad_5' onclick='_movePage("+i+")'>"+i+"</a></strong>";
+			str += "<strong><a href='#this' onclick='_movePage("+i+")'>"+i+"</a></strong>";
 		}
 	}
 	$("#"+divId).append(preStr + str + postStr);
